@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
-const { readAndAppend, readFromFile } = require('../helpers/fsUtils');
+const { readAndAppend, readFromFile , writeToFile} = require('../helpers/fsUtils');
 
 
 //test object to pass as body {title: 'yolo', note: 'oof'}
@@ -33,6 +33,19 @@ router.post('/', (req, res) => {
     }
   }).get('/', (req, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
+  }).delete('/:id', (req, res) => {
+
+    readFromFile('../db/db.json').then((data) => { 
+        const noteid = req.params.id;
+        console.log(`from delete call ${req.params.id}`);
+        const newJson = JSON.parse(data).filter(({id}) => id !== noteid);
+        console.info(newJson);
+        return newJson;
+
+    }).then((newjson) => writeToFile('./db/db.json', newjson));
+
+    console.info(`deleted note with id ${req.params.id}`);
+
   });
 
 
