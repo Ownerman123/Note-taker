@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "title": "note note",
+        "note": "I like notes",
+        "note_id": "9c54f15b-2f6d-42cb-b0d7-c0e41b53dd05"
+    },
+    {
+        "title": "more notes",
+        "note": "extra notey",
+        "note_id": "b3800142-19e8-454d-af5e-3d8d2e54e76d"
+    },
+    {
+        "title": "way long note",
+        "note": "This note is way long. oh loo the g got cut off in the title. Thats too bad, I give up on making it super long. this will do\n",
+        "note_id": "5561a166-b5c7-437d-b8e1-0c387657f550"
+    }
+]
