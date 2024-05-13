@@ -14,17 +14,17 @@ router.post('/', (req, res) => {
     // If all the required properties are present
     if (title && note) {
       // Variable for the object we will save
-      const newFeedback = {
-        title,
-        note,
+      const newnote = {
+        title: title,
+        note: note,
         note_id: uuidv4(),
       };
   
-      readAndAppend(newFeedback, './db/db.json');
+      readAndAppend(newnote, './db/db.json');
   
       const response = {
         status: 'success',
-        body: newFeedback,
+        body: newnote,
       };
   
       res.json(response);
@@ -32,19 +32,21 @@ router.post('/', (req, res) => {
       res.json('Error in posting note');
     }
   }).get('/', (req, res) => {
-    readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
-  }).delete('/:id', (req, res) => {
+    readFromFile('./db/db.json').then((data) => {res.json(JSON.parse(data));})
+  }).delete('/:note_id', (req, res) => {
 
-    readFromFile('../db/db.json').then((data) => { 
-        const noteid = req.params.id;
-        console.log(`from delete call ${req.params.id}`);
-        const newJson = JSON.parse(data).filter(({id}) => id !== noteid);
+    readFromFile('./db/db.json').then((data) => { 
+        const noteid = req.params.note_id;
+        console.log(`from delete call ${req.params.note_id}`);
+        const newJson = JSON.parse(data).filter(({note_id}) => note_id !== noteid);
         console.info(newJson);
         return newJson;
 
-    }).then((newjson) => writeToFile('./db/db.json', newjson));
+    }).then((newjson) => {writeToFile('./db/db.json', newjson);
+      res.json({status: "success", body: newjson});
+    });
 
-    console.info(`deleted note with id ${req.params.id}`);
+    //console.info(`deleted note with id ${req.params.note_id}`);
 
   });
 
