@@ -11,6 +11,7 @@
 [License](#license)
 
 [Contact](#contact)
+[Deployed](#deployed)
 
 ## Installation 
 ```bash
@@ -28,6 +29,8 @@ npm run start
 !["Note-Taker screenshot"](./images/note-taker-notes-page.png)
 ## License 
 ![Static Badge](https://img.shields.io/badge/License-MIT-blue)
+## Deployed
+https://note-taker-v0g3.onrender.com
 ## Contact 
  Ask me questions about the project here
 * Github: Ownerman123
